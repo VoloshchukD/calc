@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/calc")
-public class Calc extends HttpServlet {
+public class CalcServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +32,9 @@ public class Calc extends HttpServlet {
             String num2s = req.getParameter("num2");
             int num1 = Integer.parseInt(num1s);
             int num2 = Integer.parseInt(num2s);
+            if(num2 == 0){
+                resp.sendRedirect("/ls1pr_war_exploded/errorPage.jsp");
+            }
             int rest = 0;
             String rltStr = null;
 
@@ -46,7 +49,6 @@ public class Calc extends HttpServlet {
             }
             rltStr = (num1s + op + num2s + "=" + rest);
             req.getSession().setAttribute("result", rest);
-            resp.sendRedirect("/ls1pr_war_exploded/calc.jsp");
 
             if (req.getSession().getAttribute("history") == null) {
                 req.getSession().setAttribute("history", new ArrayList<String>());
@@ -54,8 +56,9 @@ public class Calc extends HttpServlet {
 
             List<String> history = (List<String>) req.getSession().getAttribute("history");
             history.add(rltStr);
-        }
 
+            resp.sendRedirect("/ls1pr_war_exploded/calc.jsp");
+        }
 
     }
 

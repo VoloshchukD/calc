@@ -15,24 +15,26 @@
 <form action="${pageContext.request.contextPath}/reg" method="post">
 
     <label> Имя пользователя </label>
-       <input type="text" name="name"/>
+       <input type="text" name="name" />
     <br/>
     <br/>
        <label> Возраст </label>
-       <input type="text" name="age"/>
+       <input type="text" name="age" />
     <br/>
     <br/>
         <label> Логин </label>
-        <input type="text" name="login"/>
+        <input type="text" name="login" />
     <br/>
     <br/>
         <label> Пароль </label>
-        <input type="text" name="password"/>
+        <input type="text" name="password" />
     <br/>
     <br/>
     <a href="${pageContext.request.contextPath}/reg"><button>Зарегистрироваться</button></a>
+    <br/>
+    <br/>
 </form>
+<a href="${pageContext.request.contextPath}/auth"><button>Войти</button></a>
 
-Здравствуйте <%=request.getServletContext().getAttribute("lastRegUserName")%>
 </body>
 </html>

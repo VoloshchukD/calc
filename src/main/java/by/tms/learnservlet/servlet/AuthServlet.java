@@ -20,19 +20,33 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        User userA = new User();
-        userA.setLogin(login);
-        userA.setPassword(password);
-        for (User user1 : ((List<User>) getServletContext().getAttribute("users"))) {
-            if (user1.equals(userA)) {
-                req.getSession().setAttribute("currentUser", user1);
+        if( req.getSession().getAttribute("currentUser") == null ) {
+            String login = req.getParameter("loginA");
+            String password = req.getParameter("passwordA");
+            User userA = new User();
+            userA.setLogin(login);
+            userA.setPassword(password);
+            for (User user1 : ((List<User>) getServletContext().getAttribute("users"))) {
+                if (user1.equals(userA)) {
+                    req.getSession().setAttribute("currentUser", user1);
+                }
             }
+            if (userA.equals(new User("ADMIN", "321"))) {
+                userA.setName("---");
+                userA.setAge(999);
+                req.getSession().setAttribute("ADMIN", userA);
+                resp.sendRedirect("/ls1pr_war_exploded/admin");
+            } else {
+                if (req.getSession().getAttribute("currentUser") != null) {
+                    resp.sendRedirect("/ls1pr_war_exploded/calc");
+                } else {
+                    resp.sendRedirect("/ls1pr_war_exploded/errorPage.jsp");
+                }
+
+            }
+        } else{
+            resp.sendRedirect("/ls1pr_war_exploded/errorPage.jsp");
         }
-        resp.sendRedirect("/ls1pr_war_exploded/auth.jsp");
     }
-
-
 
 }

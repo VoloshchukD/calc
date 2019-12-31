@@ -26,17 +26,20 @@ public class RegServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
-        if(name != null && age != null){
+        if(name != null && age != null && login != null && password != null){
             User user = new User(name, Integer.parseInt(age), login, password);
             if(getServletContext().getAttribute("users") == null){
                 getServletContext().setAttribute("users", new ArrayList<User>());
             }
             List<User> users = (List<User>) getServletContext().getAttribute("users");
-            if(users.add(user)){
-                req.getServletContext().setAttribute("lastRegUserName",name);
+            if(!users.contains(user)){
+                users.add(user);
+                resp.sendRedirect("/ls1pr_war_exploded/auth");
             }
+            else{
+                resp.sendRedirect("/ls1pr_war_exploded/errorPage.jsp");
             }
-        resp.sendRedirect("/ls1pr_war_exploded/reg.jsp");
         }
 
-}
+        }
+    }

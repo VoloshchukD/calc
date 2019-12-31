@@ -23,6 +23,13 @@
 </form>
 
 Ваш результат <%=request.getSession().getAttribute("result")%>
-
+<br/>
+<br/>
+<br/>
+<br/>
+<a href="${pageContext.request.contextPath}/history"><button>история</button></a>
+<br/>
+<br/>
+<a href="${pageContext.request.contextPath}/userpage"><button>личный кабинет</button></a>
 </body>
 </html>

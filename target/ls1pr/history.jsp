@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: pagubnoe
-  Date: 17.12.2019
-  Time: 18:16
+  Date: 21.12.2019
+  Time: 22:42
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,13 +11,9 @@
     <title>History</title>
 </head>
 <body>
-
 <form action="${pageContext.request.contextPath}/history" method="post">
-<%= request.getSession().getAttribute("history").toString()%>
 
-
-    </form>
-
-
+</form>
+<%=request.getSession().getAttribute("history")%>
 </body>
 </html>

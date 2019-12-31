@@ -11,12 +11,13 @@ import java.io.IOException;
 public class UserPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.getRequestDispatcher("/userpage.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.sendRedirect("/ls1pr_war_exploded/userpage.jsp");
     }
 
 }

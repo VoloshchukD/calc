@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(servletNames = "AuthServlet")
-public class Filter extends HttpFilter {
+public class AuthFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-//        chain
+
+            chain.doFilter(req, res);
+
     }
+
 }

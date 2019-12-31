@@ -6,21 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/history", name = "HistoryServlet")
-public class HistoryServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = "/admin", name = "AdminServlet")
+public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/history.jsp").forward(req, resp);
+        req.getRequestDispatcher("/admin.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if( req.getSession().getAttribute("currentUser") != null) {
-            resp.sendRedirect("/ls1pr_war_exploded/history.jsp");
-        }
+
+        resp.sendRedirect("/ls1pr_war_exploded/admin.jsp");
     }
+
 }
